@@ -306,8 +306,16 @@ def get_engine(model_cfg, device = 'cuda', mode='val'):
 
     elif model_name == 'openclip':
         corpus_config, model_arch = OPENCLIP_MODEL_DIC[pretraining_dataset][arch]
-        model, train_preprocess, preprocess = open_clip.create_model_and_transforms(model_arch, pretrained=corpus_config)
-        # print('train_preprocess:', train_preprocess)
+        
+        # Check for a local checkpoint first to avoid Hugging Face/Internet hits
+        local_ckpt_path = f"model_ckpts/{model_arch}_{corpus_config}.pt"
+        if os.path.exists(local_ckpt_path):
+            print(f"Loading model from local checkpoint: {local_ckpt_path}")
+            model, train_preprocess, preprocess = open_clip.create_model_and_transforms(model_arch, pretrained=local_ckpt_path)
+        else:
+            print(f"Local checkpoint not found at {local_ckpt_path}. Attempting to load from cache/internet...")
+            model, train_preprocess, preprocess = open_clip.create_model_and_transforms(model_arch, pretrained=corpus_config)
+            
         tokenizer = open_clip.get_tokenizer(model_arch)
 
     elif model_name == 'bioclip':
