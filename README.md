@@ -1,67 +1,75 @@
-<div align="center">
-<h1>Surely Large Multimodal Models (<em>Don't</em>) Excel<br>in Visual Species Recognition?</h1>
+# Comparative Diagnostics effect on species classification in POC
 
-[**Tian Liu**](https://tian1327.github.io/)<sup>*1</sup> · [**Anwesha Basu**](https://www.linkedin.com/in/anweshabasu98/)<sup>*1</sup> · [**James Caverlee**](https://people.engr.tamu.edu/caverlee/index.html)<sup>1</sup> · [**Shu Kong**](https://aimerykong.github.io/)<sup>2</sup>
+This repo is a clone of the original git repository for the baseline paper *Surely Large Multimodal Models (Don't) Excel in Visual Species Recognition?*. The base structure of the code is provided by their research. The original `README.md` for the project has been moved to `ORGINAL_README.md` for reference. 
 
-<sup>1</sup>Texas A&M University&emsp;&emsp;&emsp;<sup>2</sup>University of Macau
-<br>
-*The first two authors contribute equally. 
+Our goal was to test if an additional LMM inference step adding a comparative diagnostic would increase the accuracy of the POC model. 
 
-<a href="https://arxiv.org/abs/2512.15748"><img src='https://img.shields.io/badge/arXiv-POC-red' alt='Paper PDF'></a>
-<a href='https://tian1327.github.io/POC/'><img src='https://img.shields.io/badge/Project_Page-POC-green' alt='Project Page'></a>
-</div>
+## Directory Structure
 
+Since we are using the existing repository as a base, our directory structure does not reflect exactly what would be expected. Since the `src` directory is required to have source code in it, we moved the entire original root directory into it. Otherwise we would have been making unnecessary changes, which would have increased the chance we do not faithfully recreate the baseline model. Therefore our directory structure is as follows:
 
-We explore the capability of Large Multimodal Models (LMMs) in visual species recognition, a challenging fine-grained visual classification task. Surprisingly, we find that LMMs still struggle with this task, falling far behind a specialized few-shot recognition expert model. Yet, by leveraging the `top-k predictions` from the expert model to guide LMMs through in-context learning, we can significantly enhance VSR performance. Our method, **Post-hoc correction (POC)**, achieves state-of-the-art results on multiple VSR benchmarks, outperforming prior few-shot methods by >10% accuracy. Importantly, POC **requires no extra training, validation, or manual intervention**, serving as a `plug-and-play` module to significantly enhance various existing FSL methods.
+```
+├── data # Script to download and link to SRC 
+├── experiments # The bash script that will run the baseline and comparative diagnostic tests
+├── LICENSE # The original license of the PoC code base
+├── quen_requirements.txt # Requirements for the qwen python virtual env
+├── README.md # Our README
+├── requirements.txt # Requirements for the poc python virtual env
+├── results # The output results of our testing 
+└── src # Contains the root of the original project with our modifications
+    ├── assets # Banner image 
+    ├── CLIP.md
+    ├── config.yml
+    ├── data
+    ├── dataset_preparation
+    ├── DATASETS.md
+    ├── dinov3
+    ├── finer_topk.py
+    ├── lmm-inference
+    ├── main.py
+    ├── main_ssl.py
+    ├── ORGINAL_README.md # Original README from the PoC repository
+    ├── output # Output of running our test script
+    ├── QUERYLMM.md # Original descriptions of how to use LLM queries
+    ├── scripts
+    ├── testing.py
+    └── utils
+```
 
-<div align="center">
+## Setting up the Environment
 
-![teaser](assets/POC_teaser.png)
+There is a guide to set up the environment in `ORGINAL_README.md`, but due to some incompleteness in the details, we have added our environment set up here. 
 
-</div>
+### CUDA Drivers
 
-## News
+You should be using CUDA Drivers version 12.8 as established in the baseline paper. Given configuring drivers varies by platform, we leave this to you. 
 
-- **2025-12-16:** POC code is released.
-- **2025-12-10:** arXiv preprint is published.
+### Conda Setup
 
-<!-- - **2025-12-06:** We release pre-created `laion400m.db` file for easy retrieval. See [RETRIEVAL.md](./retrieval/RETRIEVAL.md).
-- **2025-05-27:** SWAT is accepted to 4th CVinW and FGVC12 workshops at CVPR'25! 
-- **2025-02-26:** SWAT is accepted to CVPR 2025! ;)
-- **2025-01-18:** We provide access to our retrieved data through URLs. See [RETRIEVAL.md](./retrieval/RETRIEVAL.md).
-- **2024-11-24:** Updated code base to include more datasets.
-- **2024-08-22:** Retrieval code released, see [RETRIEVAL.md](./retrieval/RETRIEVAL.md).
-- **2024-07-05:** SWAT finetuning code released.
-- **2024-06-28:** [project page](https://tian1327.github.io/SWAT/) launched.
-- **2024-06-17:** [arXiv paper](https://arxiv.org/abs/2406.11148) released. -->
+The first step to set up will be to install Conda, which you can do by following this guide. We used Miniconda, but a full Anaconda Distribution is also a valid approach. You can find the install process [here](https://www.anaconda.com/download/success?reg=skipped) if you do not already have Conda. 
 
+### Conda / Python virtual environments
 
-<!-- --- -->
+The following commands should be run in the repository root. 
 
-## Create Environment
+Create the base conda environment for POC. 
 
-Create conda environment and install dependencies.
-
-```bash
-# lab server has CUDA version 12.8, thus using pytorch-cuda=12.1 for compatibility
-# DINOv3 requries python=3.10
-
+```bash 
+# Create base poc conda ENV
 conda create -n poc python=3.10 -y
 conda activate poc
 conda install pytorch torchvision torchaudio torchmetrics pytorch-cuda=12.1 -c pytorch -c nvidia
-
-# install openclip and clip
-pip install open_clip_torch
-pip install git+https://github.com/openai/CLIP.git
-
-pip install pandas scikit-learn 
-
-# clone dinov3
-git clone https://github.com/facebookresearch/dinov3.git
-
-# install gdown for downloading datasets
-pip install gdown
 ```
+
+Then you will need to create a python virtual environment for poc. Ensure you are actively in the POC conda environment when doing this.
+
+```bash 
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Second, create an additional conda environment for using Qwen. 
 
 For LMM inference with Qwen, you can follow [instructions](https://github.com/QwenLM/Qwen2.5-VL) or steps below to set up Qwen2.5-VL-7B locally.
 
@@ -69,153 +77,235 @@ For LMM inference with Qwen, you can follow [instructions](https://github.com/Qw
 # setup Qwen2.5-VL-7B locally using huggingface transformers
 conda create --name qwen --clone poc
 conda activate qwen
+```
+
+In the qwen conda environment, create a python virtual environment and install requirements. 
+
+```bash
+python3 -m venv .venv_qwen
+source .venv_qwen/bin/activate
 pip install transformers==4.51.3 accelerate
 pip install qwen-vl-utils[decord]
 ```
 
+### Downloading data
 
-## Dataset Prepraration
+Due to the competition organizers' data having issues with images being inaccessible from the species196 dataset, we were unable to install those and their provided script should not be used. 
 
-Prepare the datasets following the instructions in [DATASETS.md](./DATASETS.md).
-The few-shot splits are provided in the `data/${dataset_name}/few-shot${num_shots}_seed${seed}.txt` files, the test splits are in `data/${dataset_name}/test.txt`.
-You can simply just download the datasets without repeating the sampling process.
+We solely experimented with the Semi Aves data set from the [Semi-Supervised Recognition Challenge](https://www.kaggle.com/competitions/semi-inat-2020/data). The only way to get the data is directly from Kaggle. To do this, you will need to set up a [Kaggle API key](https://www.kaggle.com/docs/api#authentication) and Kaggle account.
+
+When downloaded from Kaggle Hub, there is an extra folder level (e.g. `semi-aves/u_train_out/u_train_out` instead of `semi-aves/u_train_out`). To accommodate for this, we create symbolic links.
+
+To download the Aves Dataset run the following commands. 
+```bash
+conda activate poc
+source ./.venv/bin/activate
+python3 ./data/download_aves.py
+```
+
+This will download the dataset to the top level `./data` folder and create symbolic links in the `./src/dataset` folder.
+
+NOTE: This can take up to 30 minutes. The dataset is about 14GB and needs to be unpacked. We also do not recommend using `ln -s` to create symbolic links because there is so much data in the dataset, it overwhelms the max number of files that can be transferred.
 
 
-## Code Usage
-
-1. Obtain the top-k predictions on the test set using a few-shot finetuned model.
+To execute the entire end-to-end pipeline manually instead of using a single script, you can run the following commands sequentially. All commands should be run from inside the `src` directory.
 
 ```bash
-# activate conda environment
-conda activate poc
+cd src
+```
+### Running ONLY the Baseline POC Pipeline
 
-# few-shot linear probing
+If you want to run the original POC pipeline without the new comparative diagnostic layer, you can run these steps:
+
+#### Step 1: Linear Probing (Expert Initialization)
+
+Start in the root project directory.
+
+```bash
+conda activate poc
+source .venv/bin/activate
+cd src
 bash scripts/run_dataset_seed_probing.sh semi-aves 1
-
-# few-shot finetuning
-bash scripts/run_dataset_seed_fewshot_finetune.sh semi-aves 1
-
-# obtain top-k predictions on test set for a pretrained model
-bash scripts/run_dataset_seed_topk.sh semi-aves 1
-
-# we can also run batch experiments for multiple datasets and seeds
-bash scripts/batch_probing.sh
-bash scripts/batch_fewshot_finetune.sh
-bash scripts/batch_topk.sh
-
-# run other FSL baselines, we will release more FSL baselines soon
-bash scripts/batch_cmlp.sh
 ```
 
-
-
-For running ```FineR```, follow the command given below. Note this is just FineR and not POC on top of FineR. You can change the number of shots to 4, 8 or 16. Update the ```train_list``` and ```output_json``` arguments accordingly.
-
+#### Step 2: Few-shot Finetuning
 ```bash
-# Activate your environment
-conda activate poc
-
-# Obtain FineR predictions. 
-python finer_topk.py \
-  --model_cfg ViT-B-32 \
-  --pretrained laion400m_e32 \
-  --device cuda \
-  --dataset_name semi-aves \
-  --dataset_root_train ../path/to/your/semi-aves/ \
-  --dataset_root_test  ../path/to/your/semi-aves/ \
-  --train_list data/semi-aves/fewshot4_seed1.txt \
-  --test_list  data/semi-aves/test.txt \
-  --metrics_json data/semi-aves/semi-aves_labels.json \
-  --name_key most_common_name \
-  --use_random_aug --aug_repeats 10 --encode_chunk_size 512 \
-  --alpha 0.7 \
-  --logit_scale_eval 1.0 \
-  --logit_scale_export 50 \
-  --batch_size 256 --workers 8 \
-  --topk 10 \
-  --output_json ../path/to/your/fineR_semi-aves_4shot_topk_fused.json
+bash scripts/run_dataset_seed_fewshot_finetune.sh semi-aves 1
 ```
 
-2. Query LMM for post-hoc correction.
+#### Step 3: Top-K Prediction Extraction
+```bash
+bash scripts/run_dataset_seed_topk_fewshot_finetune.sh semi-aves 1
+```
 
+#### Step 4: Pre-generate Reference Images
 ```bash
 conda activate qwen
-cd POC_dev/lmm-inference/
+source ../.venv_qwen/bin/activate
+cd lmm-inference
 
-# generate few-shot reference images by stitching them together
 python pregenerate_reference_images.py \
-  --class-json ../data/species196_insecta/species196_insecta_labels.json \
-  --k 4 \
-  --dataset species196_insecta \
-  --seed-file ../data/species196_insecta/fewshot16_seed1.txt \
-  --image-root /home/ltmask/dataset/species196_insecta \
-  --output-dir /home/ltmask/dataset/species196_insecta
+    --class-json ../data/semi-aves/semi-aves_labels.json \
+    --k 4 \
+    --dataset semi-aves \
+    --seed-file ../data/semi-aves/fewshot4_seed1.txt \
+    --image-root ../data/semi-aves \
+    --output-dir ../data/semi-aves
+```
 
-# run POC with Qwen2.5-VL-7B-Instruct
+#### Step 5: Baseline POC Inference
+```bash
 python run_inference_local_hf.py \
-  --prompt-template top5-multimodal-4shot-with-confidence_ranking \
-  --prompt-dir species196_insecta \
-  --backend huggingface \
-  --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
-  --config-yaml ../config.yml \
-  --image-dir species196_insecta \
-  --image-paths ../data/species196_insecta/test.txt \
-  --ref-image-dir /home/ltmask/dataset/species196_insecta/pregenerated_references_4shot \
-  --taxonomy-json ../data/species196_insecta/species196_insecta_labels.json \
-  --topk-json /home/ltmask/POC_dev/hanna/finetune_vitb32_openclip_laion400m_species196_insecta_4_1_topk_test_predictions_fixed.json \
-  --output-csv /home/ltmask/POC_dev/hanna/output.csv \
-  --error-file /home/ltmask/POC_dev/hanna/error.txt \
-  --max_new_tokens 900
+    --prompt-template top5-multimodal-4shot-with-confidence_ranking \
+    --prompt-dir semi-aves \
+    --backend huggingface \
+    --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
+    --config-yaml ../config.yml \
+    --image-dir semi-aves \
+    --image-paths ../data/semi-aves/test.txt \
+    --ref-image-dir ../data/semi-aves/pregenerated_references_4shot \
+    --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
+    --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
+    --output-csv ../output/lmm_results/baseline_poc_semi-aves_4shot_seed1.csv \
+    --error-file ../output/lmm_results/baseline_poc_semi-aves_4shot_seed1_errors.txt \
+    --max_new_tokens 900
 ```
 
-See [QUERYLMM.md](./QUERYLMM.md) for more detailed instructions on running query with each LMM. 
-
-
-## Related Works
-
-Check out our related works below:
-- [SWIFT](https://tian1327.github.io/SWIFT/) (arXiv 2025): enabling successful semi-supervised learning with VLM
-- [VEST](https://hannawang09.github.io/projects/vest/) (arXiv 2025): retrieving open data for validation in few-shot learning
-- [SWAT](https://tian1327.github.io/SWAT/) (CVPR 2025): retrieving open data for few-shot finetuning a VLM
-- [REAL](https://shubhamprshr27.github.io/neglected-tails-of-vlms/) (CVPR 2024): uncovering the failures and causes in zero-shot VLMs
-
-## Citations
-
-If you find our project useful, please consider citing our works:
-
-```bibtex
-@article{liu2025poc,
-title={Surely Large Multimodal Models (Don’t) Excel in Visual Species Recognition?}, 
-author={Liu, Tian and Basu, Anwesha and Caverlee, James and Kong, Shu},
-journal={arXiv preprint arXiv:2512.15748},
-year={2025}
-}
-
-@article{liu2025swift,
-title={Solving Semi-Supervised Few-Shot Learning from an Auto-Annotation Perspective}, 
-author={Liu, Tian and Basu, Anwesha and Kong, Shu},
-journal={arXiv preprint arXiv:2512.10244},
-year={2025}
-}
-
-@article{wang2025enabling,
-title={Enabling Validation for Robust Few-Shot Recognition}, 
-author={Wang, Hanxin and Liu, Tian and Kong, Shu},
-journal={arXiv preprint arXiv:2506.04713},
-year={2025}
-}
-
-@inproceedings{liu2025few,
-    title={Few-Shot Recognition via Stage-Wise Retrieval-Augmented Finetuning},
-    author={Liu, Tian and Zhang, Huixin and Parashar, Shubham and Kong, Shu},
-    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-    year={2025}
-}
-
-@inproceedings{parashar2024neglected,
-    title={The Neglected Tails in Vision-Language Models},
-    author={Parashar, Shubham and Lin, Zhiqiu and Liu, Tian and Dong, Xiangjue and Li, Yanan and Ramanan, Deva and Caverlee, James and Kong, Shu},
-    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-    year={2024}
-}
+#### Step 6: Evaluate Baseline Results
+```bash
+python eval_output.py \
+    --output-csv ../output/lmm_results/baseline_poc_semi-aves_4shot_seed1.csv \
+    --test-list ../data/semi-aves/test.txt \
+    --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
+    --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
+    --image-dir semi-aves \
+    --config-yaml ../config.yml
 ```
+
+---
+
+### Running the Baseline AND Comparative Diagnostic Pipelines
+
+#### Step 1: Linear Probing (Expert Initialization)
+
+Start in the root project directory.
+
+```bash
+conda activate poc
+source .venv/bin/activate
+cd src
+bash scripts/run_dataset_seed_probing.sh semi-aves 1
+```
+
+#### Step 2: Few-shot Finetuning
+```bash
+bash scripts/run_dataset_seed_fewshot_finetune.sh semi-aves 1
+```
+
+#### Step 3: Top-K Prediction Extraction
+```bash
+bash scripts/run_dataset_seed_topk_fewshot_finetune.sh semi-aves 1
+```
+
+#### Step 4: Pre-generate Reference Images
+```bash
+conda activate qwen
+source ../.venv_qwen/bin/activate
+cd lmm-inference
+
+python pregenerate_reference_images.py \
+    --class-json ../data/semi-aves/semi-aves_labels.json \
+    --k 4 \
+    --dataset semi-aves \
+    --seed-file ../data/semi-aves/fewshot4_seed1.txt \
+    --image-root ../data/semi-aves \
+    --output-dir ../data/semi-aves
+```
+
+#### Step 5: Baseline POC
+This step generates standard ranking predictions for comparison.
+```bash
+python run_inference_local_hf.py \
+    --prompt-template top5-multimodal-4shot-with-confidence_ranking \
+    --prompt-dir semi-aves \
+    --backend huggingface \
+    --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
+    --config-yaml ../config.yml \
+    --image-dir semi-aves \
+    --image-paths ../data/semi-aves/test.txt \
+    --ref-image-dir ../data/semi-aves/pregenerated_references_4shot \
+    --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
+    --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
+    --output-csv ../output/lmm_results/baseline_poc_semi-aves_4shot_seed1.csv \
+    --error-file ../output/lmm_results/baseline_poc_semi-aves_4shot_seed1_errors.txt \
+    --max_new_tokens 900
+```
+
+#### Step 6: Comparative Diagnostic Generation
+This step represents our novel middle LMM layer, generating species-specific comparative diagnostics.
+```bash
+python run_inference_local_hf.py \
+    --prompt-template comparative-diagnostic \
+    --prompt-dir semi-aves \
+    --backend huggingface \
+    --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
+    --config-yaml ../config.yml \
+    --image-dir semi-aves \
+    --image-paths ../data/semi-aves/test.txt \
+    --ref-image-dir ../data/semi-aves/pregenerated_references_4shot \
+    --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
+    --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
+    --output-csv ../output/lmm_results/diagnostic_semi-aves_4shot_seed1.csv \
+    --error-file ../output/lmm_results/diagnostic_semi-aves_4shot_seed1_errors.txt \
+    --max_new_tokens 300
+```
+
+#### Step 7: Parse Diagnostics to JSON
+```bash
+python csv_to_diagnostics_json.py \
+    --csv ../output/lmm_results/diagnostic_semi-aves_4shot_seed1.csv \
+    --out ../output/lmm_results/diagnostic_semi-aves_4shot_seed1.json
+```
+
+#### Step 8: Final POC + Diagnostics
+This runs the final POC ranking, but incorporates the diagnostics generated in Step 6.
+```bash
+python run_inference_local_hf.py \
+    --prompt-template top5-multimodal-with-diagnostic_ranking \
+    --prompt-dir semi-aves \
+    --backend huggingface \
+    --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
+    --config-yaml ../config.yml \
+    --image-dir semi-aves \
+    --image-paths ../data/semi-aves/test.txt \
+    --ref-image-dir ../data/semi-aves/pregenerated_references_4shot \
+    --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
+    --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
+    --diagnostics-json ../output/lmm_results/diagnostic_semi-aves_4shot_seed1.json \
+    --output-csv ../output/lmm_results/poc_with_diagnostic_semi-aves_4shot_seed1.csv \
+    --error-file ../output/lmm_results/poc_with_diagnostic_semi-aves_4shot_seed1_errors.txt \
+    --max_new_tokens 900
+```
+
+#### Step 9: Evaluate Results
+Evaluate both the Baseline and the Diagnostic-enhanced outputs to compare accuracy.
+```bash
+# Evaluate Baseline POC
+python eval_output.py \
+    --output-csv ../output/lmm_results/baseline_poc_semi-aves_4shot_seed1.csv \
+    --test-list ../data/semi-aves/test.txt \
+    --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
+    --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
+    --image-dir semi-aves \
+    --config-yaml ../config.yml
+
+# Evaluate POC + Comparative Diagnostic
+python eval_output.py \
+    --output-csv ../output/lmm_results/poc_with_diagnostic_semi-aves_4shot_seed1.csv \
+    --test-list ../data/semi-aves/test.txt \
+    --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
+    --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
+    --image-dir semi-aves \
+    --config-yaml ../config.yml
+```
+

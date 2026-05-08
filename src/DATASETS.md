@@ -27,6 +27,8 @@ The instructions to prepare each dataset are detailed below. The corresponding s
 
 ### Semi-Aves
 
+NOTE: This download appraoch does not work. See `README.md`. 
+
 - Create a folder named `semi-aves/` under `$DATA`.
 - Download data from the [official repository](https://github.com/cvl-umass/semi-inat-2020) or following the `gdown` commands below
 

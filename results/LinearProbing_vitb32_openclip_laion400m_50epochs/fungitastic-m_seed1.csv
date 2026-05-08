@@ -1,2 +1,0 @@
-Dataset,Method,Model,DataSource,Cls_init,Shots,Seed,Retrieval_split,Temp_scheme,Temp,Stage1_Acc,Stage2_LPAcc,Stage2_FTAcc
-Created directory: data/fungitastic-m/pre_extracted/
