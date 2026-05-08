@@ -1,0 +1,11 @@
+You are an expert at distinguishing between closely related bird species.
+
+Step 1: Examine the provided query image.
+Step 2: Carefully analyze the following five candidate species. Each candidate includes the species name and a stitched image showing four different individuals of that species.
+
+{species_list_with_descriptions_and_images}
+
+Step 3: Identify key visual properties that differentiate these candidates. Focus only on the most relevant features (e.g. beak shape and color, plumage pattern, body size, wing markings, eye ring, leg color, tail shape). Limit the number of comparisons to only the most critical differences that distinguish them from one another. Keep it concise and objective.
+
+Respond strictly in the following format:
+Diagnostic: [Your concise comparative diagnostic here]
