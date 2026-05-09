@@ -84,8 +84,8 @@ In the qwen conda environment, create a python virtual environment and install r
 ```bash
 python3 -m venv .venv_qwen
 source .venv_qwen/bin/activate
-pip install transformers==4.51.3 accelerate
-pip install qwen-vl-utils[decord]
+pip install -r ./requirements.txt
+pip install -r ./qwen_requirements.txt
 ```
 
 ### Downloading data
@@ -98,8 +98,9 @@ When downloaded from Kaggle Hub, there is an extra folder level (e.g. `semi-aves
 
 To download the Aves Dataset run the following commands. 
 ```bash
-conda activate poc
 source ./.venv/bin/activate
+conda activate poc
+pip3 install kagglehub
 python3 ./data/download_aves.py
 ```
 
@@ -113,17 +114,17 @@ To execute the entire end-to-end pipeline manually instead of using a single scr
 ```bash
 cd src
 ```
-### Running ONLY the Baseline POC Pipeline
+### Running the Baseline POC Pipeline
 
-If you want to run the original POC pipeline without the new comparative diagnostic layer, you can run these steps:
+If you want to run the original POC pipeline without the new comparative diagnostic layer, you can run these steps. Baseline POC takes about 8 hours on two 3090s.
 
 #### Step 1: Linear Probing (Expert Initialization)
 
-Start in the root project directory.
+Start in the root project directory. You may need to change argumentst to reflect the output files of your run.
 
 ```bash
-conda activate poc
 source .venv/bin/activate
+conda activate poc
 cd src
 bash scripts/run_dataset_seed_probing.sh semi-aves 1
 ```
@@ -149,7 +150,7 @@ python pregenerate_reference_images.py \
     --k 4 \
     --dataset semi-aves \
     --seed-file ../data/semi-aves/fewshot4_seed1.txt \
-    --image-root ../data/semi-aves \
+    --image-root ../dataset/semi-aves \
     --output-dir ../data/semi-aves
 ```
 
@@ -161,9 +162,9 @@ python run_inference_local_hf.py \
     --backend huggingface \
     --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
     --config-yaml ../config.yml \
-    --image-dir semi-aves \
+    --image-dir "$PWD/../dataset/semi-aves" \
     --image-paths ../data/semi-aves/test.txt \
-    --ref-image-dir ../data/semi-aves/pregenerated_references_4shot \
+    --ref-image-dir "$PWD/../data/semi-aves/pregenerated_references_4shot" \
     --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
     --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
     --output-csv ../output/lmm_results/baseline_poc_semi-aves_4shot_seed1.csv \
@@ -188,7 +189,7 @@ python eval_output.py \
 
 #### Step 1: Linear Probing (Expert Initialization)
 
-Start in the root project directory.
+Start in the root project directory. You may need to change argumentst to reflect the output files of your run. Training takes about 12 hours on two 3090s.
 
 ```bash
 conda activate poc
@@ -231,9 +232,9 @@ python run_inference_local_hf.py \
     --backend huggingface \
     --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
     --config-yaml ../config.yml \
-    --image-dir semi-aves \
+    --image-dir "$PWD/../dataset/semi-aves" \
     --image-paths ../data/semi-aves/test.txt \
-    --ref-image-dir ../data/semi-aves/pregenerated_references_4shot \
+    --ref-image-dir "$PWD/../data/semi-aves/pregenerated_references_4shot" \
     --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
     --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
     --output-csv ../output/lmm_results/baseline_poc_semi-aves_4shot_seed1.csv \
@@ -250,9 +251,9 @@ python run_inference_local_hf.py \
     --backend huggingface \
     --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
     --config-yaml ../config.yml \
-    --image-dir semi-aves \
+    --image-dir "$PWD/../dataset/semi-aves" \
     --image-paths ../data/semi-aves/test.txt \
-    --ref-image-dir ../data/semi-aves/pregenerated_references_4shot \
+    --ref-image-dir "$PWD/../data/semi-aves/pregenerated_references_4shot" \
     --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
     --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
     --output-csv ../output/lmm_results/diagnostic_semi-aves_4shot_seed1.csv \
@@ -276,9 +277,9 @@ python run_inference_local_hf.py \
     --backend huggingface \
     --hf-model-name-or-path Qwen/Qwen2.5-VL-7B-Instruct \
     --config-yaml ../config.yml \
-    --image-dir semi-aves \
+    --image-dir "$PWD/../dataset/semi-aves" \
     --image-paths ../data/semi-aves/test.txt \
-    --ref-image-dir ../data/semi-aves/pregenerated_references_4shot \
+    --ref-image-dir "$PWD/../data/semi-aves/pregenerated_references_4shot" \
     --taxonomy-json ../data/semi-aves/semi-aves_labels.json \
     --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
     --diagnostics-json ../output/lmm_results/diagnostic_semi-aves_4shot_seed1.json \
@@ -309,3 +310,6 @@ python eval_output.py \
     --config-yaml ../config.yml
 ```
 
+## Seeing our training process
+
+If you would like to just see the results of running the pipline there is the output of a run in `results/poc_diagnostic_pipeline_20260507_044307.log` which shows the output of a bash script that ran all of these steps. 

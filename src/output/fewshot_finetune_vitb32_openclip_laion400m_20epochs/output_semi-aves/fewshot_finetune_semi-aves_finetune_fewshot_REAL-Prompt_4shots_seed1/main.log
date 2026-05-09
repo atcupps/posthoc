@@ -1,0 +1,151 @@
+2026-05-06 17:45:33,672 - INFO - logging started
+2026-05-06 17:45:33,672 - INFO - case_name: fewshot_finetune_semi-aves_finetune_fewshot_REAL-Prompt_4shots_seed1
+2026-05-06 17:45:33,672 - INFO - T = 1.0
+2026-05-06 17:45:33,672 - INFO - alpha = 0.5
+2026-05-06 17:45:33,672 - INFO - attentive_name = c-name
+2026-05-06 17:45:33,672 - INFO - attentive_threshold = 0.85
+2026-05-06 17:45:33,672 - INFO - bsz = 32
+2026-05-06 17:45:33,672 - INFO - check_confidence = False
+2026-05-06 17:45:33,672 - INFO - check_logits = False
+2026-05-06 17:45:33,672 - INFO - check_zeroshot = True
+2026-05-06 17:45:33,672 - INFO - cls_init = REAL-Prompt
+2026-05-06 17:45:33,672 - INFO - cls_path = output/LinearProbing_vitb32_openclip_laion400m_50epochs/output_semi-aves/semi-aves_probing_fewshot_REAL-Prompt_4shots_seed1/stage1_model_best.pth
+2026-05-06 17:45:33,672 - INFO - cmo_alpha = 1.0
+2026-05-06 17:45:33,672 - INFO - cutmix_beta = 1.0
+2026-05-06 17:45:33,672 - INFO - data_source = fewshot
+2026-05-06 17:45:33,672 - INFO - database = LAION400M
+2026-05-06 17:45:33,672 - INFO - dataset = semi-aves
+2026-05-06 17:45:33,672 - INFO - dataset_path = datasets/
+2026-05-06 17:45:33,672 - INFO - dataset_root = data/semi-aves
+2026-05-06 17:45:33,672 - INFO - dataset_wd = 1.0
+2026-05-06 17:45:33,672 - INFO - early_stop = False
+2026-05-06 17:45:33,672 - INFO - ema_decay = 0.999
+2026-05-06 17:45:33,672 - INFO - epochs = 20
+2026-05-06 17:45:33,672 - INFO - fewshot_data = [['fewshot4_seed1.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:33,673 - INFO - fewshot_weight = 1.0
+2026-05-06 17:45:33,673 - INFO - focal_alpha = 1.0
+2026-05-06 17:45:33,673 - INFO - focal_gamma = 2.0
+2026-05-06 17:45:33,673 - INFO - folder = output/fewshot_finetune_vitb32_openclip_laion400m_20epochs/output_semi-aves
+2026-05-06 17:45:33,673 - INFO - freeze_visual = False
+2026-05-06 17:45:33,673 - INFO - get_pseudolabels = False
+2026-05-06 17:45:33,673 - INFO - iterations = 500
+2026-05-06 17:45:33,673 - INFO - lambda_contrastive = 1.0
+2026-05-06 17:45:33,673 - INFO - lambda_u = 1.0
+2026-05-06 17:45:33,673 - INFO - locked_text = False
+2026-05-06 17:45:33,673 - INFO - log_mode = both
+2026-05-06 17:45:33,673 - INFO - loss_name = CE
+2026-05-06 17:45:33,673 - INFO - lr_backbone = 1e-06
+2026-05-06 17:45:33,673 - INFO - lr_classifier = 0.0001
+2026-05-06 17:45:33,673 - INFO - lr_projector = None
+2026-05-06 17:45:33,673 - INFO - lr_temp = 0.0001
+2026-05-06 17:45:33,673 - INFO - method = finetune
+2026-05-06 17:45:33,673 - INFO - mix_prob = 0.5
+2026-05-06 17:45:33,673 - INFO - mixup_alpha = 1.0
+2026-05-06 17:45:33,673 - INFO - moco_bsz = 256
+2026-05-06 17:45:33,673 - INFO - moco_k = 2048
+2026-05-06 17:45:33,673 - INFO - moco_loss_weight = 0.01
+2026-05-06 17:45:33,673 - INFO - moco_lr = 0.00015
+2026-05-06 17:45:33,673 - INFO - moco_m = 0.999
+2026-05-06 17:45:33,673 - INFO - moco_wd = 0.1
+2026-05-06 17:45:33,673 - INFO - model_cfg = vitb32_openclip_laion400m
+2026-05-06 17:45:33,673 - INFO - model_path = None
+2026-05-06 17:45:33,673 - INFO - mu = 1
+2026-05-06 17:45:33,673 - INFO - num_classes = 200
+2026-05-06 17:45:33,674 - INFO - num_workers = 8
+2026-05-06 17:45:33,674 - INFO - optim = AdamW
+2026-05-06 17:45:33,674 - INFO - oracle_split = [['u_train_in_oracle.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:33,674 - INFO - pre_extracted = False
+2026-05-06 17:45:33,674 - INFO - prefix = fewshot_finetune
+2026-05-06 17:45:33,674 - INFO - prompt_name = most_common_name
+2026-05-06 17:45:33,674 - INFO - recal_fea = False
+2026-05-06 17:45:33,674 - INFO - recal_prompt = False
+2026-05-06 17:45:33,674 - INFO - retrieval_data = [['T2T500+T2I0.25.txt'], ['retrieved/semi-aves']]
+2026-05-06 17:45:33,674 - INFO - retrieval_split = T2T500+T2I0.25.txt
+2026-05-06 17:45:33,674 - INFO - retrieved_path = retrieved/
+2026-05-06 17:45:33,674 - INFO - save_ckpt = False
+2026-05-06 17:45:33,674 - INFO - save_freq = 10
+2026-05-06 17:45:33,674 - INFO - scale_text_embedding = False
+2026-05-06 17:45:33,674 - INFO - seed = 1
+2026-05-06 17:45:33,674 - INFO - shots = 4
+2026-05-06 17:45:33,674 - INFO - skip_stage1 = False
+2026-05-06 17:45:33,674 - INFO - skip_stage2 = True
+2026-05-06 17:45:33,674 - INFO - stage1_model_path = None
+2026-05-06 17:45:33,674 - INFO - start_validation = 0
+2026-05-06 17:45:33,674 - INFO - stop_epochs = 200
+2026-05-06 17:45:33,674 - INFO - tau_norm = True
+2026-05-06 17:45:33,674 - INFO - temp_scheme = fewshot+retrieved+unlabeled
+2026-05-06 17:45:33,674 - INFO - temperature = 0.07
+2026-05-06 17:45:33,674 - INFO - test_split = [['test.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:33,674 - INFO - threshold = 0.85
+2026-05-06 17:45:33,674 - INFO - topk_predictions = False
+2026-05-06 17:45:33,674 - INFO - train_split = [['fewshot4_seed1.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:33,675 - INFO - training_seed = 1
+2026-05-06 17:45:33,675 - INFO - unlabeled_data_source = fewshot+unlabeled
+2026-05-06 17:45:33,675 - INFO - unlabeled_split = u_train_in_oracle.txt
+2026-05-06 17:45:33,675 - INFO - use_attribute = False
+2026-05-06 17:45:33,675 - INFO - use_ema = False
+2026-05-06 17:45:33,675 - INFO - utrain = None
+2026-05-06 17:45:33,675 - INFO - val_split = [['fewshot4_seed1.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:33,675 - INFO - warmup_epochs = -1
+2026-05-06 17:45:33,675 - INFO - wd = 0.01
+2026-05-06 17:45:33,675 - INFO - zeroshot_only = False
+2026-05-06 17:45:33,676 - INFO - train_split: [['fewshot4_seed1.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:33,676 - INFO - val_split: [['fewshot4_seed1.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:33,676 - INFO - test_split: [['test.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:33,676 - INFO - Device: cuda
+2026-05-06 17:45:33,687 - INFO - Number of GPUs available: 2
+2026-05-06 17:45:33,691 - INFO - Parsing model identifier. Schema: None, Identifier: ViT-B-32-quickgelu
+2026-05-06 17:45:33,691 - INFO - Loaded built-in ViT-B-32-quickgelu model config.
+2026-05-06 17:45:33,816 - INFO - HTTP Request: HEAD https://huggingface.co/timm/vit_base_patch32_clip_224.laion400m_e32/resolve/main/open_clip_model.safetensors "HTTP/1.1 302 Found"
+2026-05-06 17:45:33,821 - INFO - Instantiating model architecture: CLIP
+2026-05-06 17:45:34,745 - INFO - Loading full pretrained weights from: /home/odespo/.cache/huggingface/hub/models--timm--vit_base_patch32_clip_224.laion400m_e32/snapshots/faf88d716a164f74a5eaf785acf215a1bb7cfccd/open_clip_model.safetensors
+2026-05-06 17:45:34,806 - INFO - Final image preprocessing configuration set: {'size': (224, 224), 'mode': 'RGB', 'mean': (0.48145466, 0.4578275, 0.40821073), 'std': (0.26862954, 0.26130258, 0.27577711), 'interpolation': 'bicubic', 'resize_mode': 'shortest', 'fill_color': 0}
+2026-05-06 17:45:34,806 - INFO - Model ViT-B-32-quickgelu creation process complete.
+2026-05-06 17:45:34,806 - INFO - Parsing tokenizer identifier. Schema: None, Identifier: ViT-B-32-quickgelu
+2026-05-06 17:45:34,806 - INFO - Attempting to load config from built-in: ViT-B-32-quickgelu
+2026-05-06 17:45:34,806 - INFO - Using default SimpleTokenizer.
+2026-05-06 17:45:35,105 - INFO - Loaded model: vitb32_openclip_laion400m
+2026-05-06 17:45:35,128 - INFO - Loaded metrics from: data/semi-aves/semi-aves_labels.json
+2026-05-06 17:45:35,128 - INFO - len(metrics): 200
+2026-05-06 17:45:35,129 - INFO - Loading prompt tensors from data/semi-aves/prompts/semi-aves_vitb32_openclip_laion400m_most_common_name_prompt_tensors.pth
+2026-05-06 17:45:35,213 - INFO - Initialized classifier head with text embedding. weights.shape: torch.Size([200, 512])
+2026-05-06 17:45:35,216 - INFO - Loaded classifier weights from output/LinearProbing_vitb32_openclip_laion400m_50epochs/output_semi-aves/semi-aves_probing_fewshot_REAL-Prompt_4shots_seed1/stage1_model_best.pth
+2026-05-06 17:45:35,225 - INFO - len(train_loader): 25
+2026-05-06 17:45:35,225 - INFO - len(val_loader): 4
+2026-05-06 17:45:35,225 - INFO - len(test_loader): 16
+2026-05-06 17:45:35,237 - INFO - Training the visual encoder and linear head.
+2026-05-06 17:45:35,238 - INFO - Warmup iters: 50, Warmup lr: 1e-06
+2026-05-06 17:45:35,238 - INFO - Check Zero-shot Acc ......
+2026-05-06 17:45:41,712 - INFO - +++++ Zero-shot Test Acc: 45.0
+2026-05-06 17:45:41,712 - INFO - Start standard finetuning ......
+2026-05-06 17:45:41,712 - INFO - args.train_split: [['fewshot4_seed1.txt'], ['datasets/semi-aves']]
+2026-05-06 17:45:48,829 - INFO - Epoch 1, Iter 25, lr_bkb: 5e-07, lr_cls: 5e-05, Trn Loss: 2.492239, logit_scale: 2.659848, Val Loss: -1, Val Acc: -1, Test Acc: 45.425
+2026-05-06 17:45:55,059 - INFO - Epoch 2, Iter 50, lr_bkb: 1e-06, lr_cls: 0.0001, Trn Loss: 2.30297, logit_scale: 2.661665, Val Loss: -1, Val Acc: -1, Test Acc: 45.1
+2026-05-06 17:46:06,453 - INFO - Epoch 3, Iter 75, lr_bkb: 9.9e-07, lr_cls: 9.938e-05, Trn Loss: 2.019162, logit_scale: 2.664113, Val Loss: -1, Val Acc: -1, Test Acc: 45.15
+2026-05-06 17:46:13,008 - INFO - Epoch 4, Iter 100, lr_bkb: 9.8e-07, lr_cls: 9.755e-05, Trn Loss: 1.781332, logit_scale: 2.666531, Val Loss: -1, Val Acc: -1, Test Acc: 45.55
+2026-05-06 17:46:19,465 - INFO - Epoch 5, Iter 125, lr_bkb: 9.5e-07, lr_cls: 9.455e-05, Trn Loss: 1.59398, logit_scale: 2.668885, Val Loss: -1, Val Acc: -1, Test Acc: 45.725
+2026-05-06 17:46:25,908 - INFO - Epoch 6, Iter 150, lr_bkb: 9e-07, lr_cls: 9.045e-05, Trn Loss: 1.446738, logit_scale: 2.671107, Val Loss: -1, Val Acc: -1, Test Acc: 45.85
+2026-05-06 17:46:32,307 - INFO - Epoch 7, Iter 175, lr_bkb: 8.5e-07, lr_cls: 8.536e-05, Trn Loss: 1.317792, logit_scale: 2.673235, Val Loss: -1, Val Acc: -1, Test Acc: 46.375
+2026-05-06 17:46:38,849 - INFO - Epoch 8, Iter 200, lr_bkb: 7.9e-07, lr_cls: 7.939e-05, Trn Loss: 1.201853, logit_scale: 2.675207, Val Loss: -1, Val Acc: -1, Test Acc: 46.175
+2026-05-06 17:46:45,277 - INFO - Epoch 9, Iter 225, lr_bkb: 7.3e-07, lr_cls: 7.27e-05, Trn Loss: 1.11429, logit_scale: 2.677008, Val Loss: -1, Val Acc: -1, Test Acc: 46.2
+2026-05-06 17:46:51,683 - INFO - Epoch 10, Iter 250, lr_bkb: 6.5e-07, lr_cls: 6.545e-05, Trn Loss: 1.030432, logit_scale: 2.678624, Val Loss: -1, Val Acc: -1, Test Acc: 46.075
+2026-05-06 17:46:58,238 - INFO - Epoch 11, Iter 275, lr_bkb: 5.8e-07, lr_cls: 5.782e-05, Trn Loss: 0.966459, logit_scale: 2.68006, Val Loss: -1, Val Acc: -1, Test Acc: 46.325
+2026-05-06 17:47:04,759 - INFO - Epoch 12, Iter 300, lr_bkb: 5e-07, lr_cls: 5e-05, Trn Loss: 0.906874, logit_scale: 2.681294, Val Loss: -1, Val Acc: -1, Test Acc: 46.725
+2026-05-06 17:47:11,333 - INFO - Epoch 13, Iter 325, lr_bkb: 4.2e-07, lr_cls: 4.218e-05, Trn Loss: 0.85517, logit_scale: 2.682346, Val Loss: -1, Val Acc: -1, Test Acc: 46.85
+2026-05-06 17:47:17,907 - INFO - Epoch 14, Iter 350, lr_bkb: 3.5e-07, lr_cls: 3.455e-05, Trn Loss: 0.8244, logit_scale: 2.683216, Val Loss: -1, Val Acc: -1, Test Acc: 46.725
+2026-05-06 17:47:24,315 - INFO - Epoch 15, Iter 375, lr_bkb: 2.7e-07, lr_cls: 2.73e-05, Trn Loss: 0.788705, logit_scale: 2.683911, Val Loss: -1, Val Acc: -1, Test Acc: 46.925
+2026-05-06 17:47:30,763 - INFO - Epoch 16, Iter 400, lr_bkb: 2.1e-07, lr_cls: 2.061e-05, Trn Loss: 0.765197, logit_scale: 2.684445, Val Loss: -1, Val Acc: -1, Test Acc: 46.9
+2026-05-06 17:47:37,227 - INFO - Epoch 17, Iter 425, lr_bkb: 1.5e-07, lr_cls: 1.465e-05, Trn Loss: 0.740707, logit_scale: 2.684839, Val Loss: -1, Val Acc: -1, Test Acc: 46.975
+2026-05-06 17:47:43,603 - INFO - Epoch 18, Iter 450, lr_bkb: 1e-07, lr_cls: 9.55e-06, Trn Loss: 0.737758, logit_scale: 2.68511, Val Loss: -1, Val Acc: -1, Test Acc: 46.875
+2026-05-06 17:47:49,974 - INFO - Epoch 19, Iter 475, lr_bkb: 6e-08, lr_cls: 5.45e-06, Trn Loss: 0.731095, logit_scale: 2.685277, Val Loss: -1, Val Acc: -1, Test Acc: 46.975
+2026-05-06 17:47:58,485 - INFO - Epoch 20, Iter 500, lr_bkb: 3e-08, lr_cls: 2.45e-06, Trn Loss: 0.723402, logit_scale: 2.685362, Val Loss: 0.947703, Val Acc: 96.625, Test Acc: 46.95
+2026-05-06 17:47:58,485 - INFO - Training done.
+2026-05-06 17:47:58,485 - INFO - Best val Acc: 96.625 at epoch 20, iter 500
+2026-05-06 17:48:02,634 - INFO - +++++ Test Acc: 46.95
+2026-05-06 17:48:02,648 - INFO - logit_scale: 2.68536162
+2026-05-06 17:48:02,649 - INFO - best_logit_scale: 2.68536162
+2026-05-06 17:48:08,945 - INFO - Stage 1 Best Model saved to: output/fewshot_finetune_vitb32_openclip_laion400m_20epochs/output_semi-aves/fewshot_finetune_semi-aves_finetune_fewshot_REAL-Prompt_4shots_seed1/stage1_model_best.pth
+2026-05-06 17:48:08,959 - INFO - Skip stage 2 classifier retraining.
+2026-05-06 17:48:08,959 - INFO - Skip stage 2 FSFT.
+2026-05-06 17:48:08,959 - INFO - Total time: 2.6 mins.
+2026-05-06 17:48:08,959 - INFO - semi-aves,finetune,vitb32_openclip_laion400m,fewshot,REAL-Prompt,4,1,T2T500+T2I0.25.txt,fewshot+retrieved+unlabeled,0.07,46.9,-1,-1

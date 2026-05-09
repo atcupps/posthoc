@@ -1,0 +1,16 @@
+Loaded 200 classes from taxonomy
+Loaded 4000 ground truth entries (200 classes)
+Auto-detected answer format: ranking
+Loaded 12000 topk entries
+
+==================================================
+EVALUATION RESULTS
+==================================================
+Total images evaluated:  4000
+Correct predictions:     2511
+Wrong predictions:       1489
+Unparseable answers:     0
+
+Overall Accuracy:        62.77%
+Mean Per-Class Accuracy: 62.78%  (paper metric)
+==================================================

@@ -1,0 +1,115 @@
+2026-05-08 21:16:16,910 - INFO - logging started
+2026-05-08 21:16:16,910 - INFO - case_name: semi-aves_probing_fewshot_REAL-Prompt_4shots_seed1
+2026-05-08 21:16:16,910 - INFO - T = 1.0
+2026-05-08 21:16:16,910 - INFO - alpha = 0.5
+2026-05-08 21:16:16,910 - INFO - attentive_name = c-name
+2026-05-08 21:16:16,910 - INFO - attentive_threshold = 0.85
+2026-05-08 21:16:16,910 - INFO - bsz = 32
+2026-05-08 21:16:16,910 - INFO - check_confidence = False
+2026-05-08 21:16:16,910 - INFO - check_logits = False
+2026-05-08 21:16:16,910 - INFO - check_zeroshot = True
+2026-05-08 21:16:16,910 - INFO - cls_init = REAL-Prompt
+2026-05-08 21:16:16,910 - INFO - cls_path = None
+2026-05-08 21:16:16,910 - INFO - cmo_alpha = 1.0
+2026-05-08 21:16:16,910 - INFO - cutmix_beta = 1.0
+2026-05-08 21:16:16,910 - INFO - data_source = fewshot
+2026-05-08 21:16:16,910 - INFO - database = LAION400M
+2026-05-08 21:16:16,910 - INFO - dataset = semi-aves
+2026-05-08 21:16:16,910 - INFO - dataset_path = ../datasets/
+2026-05-08 21:16:16,910 - INFO - dataset_root = data/semi-aves
+2026-05-08 21:16:16,910 - INFO - dataset_wd = 1.0
+2026-05-08 21:16:16,910 - INFO - early_stop = False
+2026-05-08 21:16:16,911 - INFO - ema_decay = 0.999
+2026-05-08 21:16:16,911 - INFO - epochs = 50
+2026-05-08 21:16:16,911 - INFO - fewshot_data = [['fewshot4_seed1.txt'], ['../datasets/semi-aves']]
+2026-05-08 21:16:16,911 - INFO - fewshot_weight = 1.0
+2026-05-08 21:16:16,911 - INFO - focal_alpha = 1.0
+2026-05-08 21:16:16,911 - INFO - focal_gamma = 2.0
+2026-05-08 21:16:16,911 - INFO - folder = output/LinearProbing_vitb32_openclip_laion400m_50epochs/output_semi-aves
+2026-05-08 21:16:16,911 - INFO - freeze_visual = True
+2026-05-08 21:16:16,911 - INFO - get_pseudolabels = False
+2026-05-08 21:16:16,911 - INFO - iterations = 500
+2026-05-08 21:16:16,911 - INFO - lambda_contrastive = 1.0
+2026-05-08 21:16:16,911 - INFO - lambda_u = 1.0
+2026-05-08 21:16:16,911 - INFO - locked_text = False
+2026-05-08 21:16:16,911 - INFO - log_mode = both
+2026-05-08 21:16:16,911 - INFO - loss_name = CE
+2026-05-08 21:16:16,911 - INFO - lr_backbone = 1e-06
+2026-05-08 21:16:16,911 - INFO - lr_classifier = 0.0001
+2026-05-08 21:16:16,911 - INFO - lr_projector = None
+2026-05-08 21:16:16,911 - INFO - lr_temp = 0.0001
+2026-05-08 21:16:16,911 - INFO - method = probing
+2026-05-08 21:16:16,911 - INFO - mix_prob = 0.5
+2026-05-08 21:16:16,911 - INFO - mixup_alpha = 1.0
+2026-05-08 21:16:16,911 - INFO - moco_bsz = 256
+2026-05-08 21:16:16,911 - INFO - moco_k = 2048
+2026-05-08 21:16:16,911 - INFO - moco_loss_weight = 0.01
+2026-05-08 21:16:16,911 - INFO - moco_lr = 0.00015
+2026-05-08 21:16:16,911 - INFO - moco_m = 0.999
+2026-05-08 21:16:16,911 - INFO - moco_wd = 0.1
+2026-05-08 21:16:16,911 - INFO - model_cfg = vitb32_openclip_laion400m
+2026-05-08 21:16:16,911 - INFO - model_path = None
+2026-05-08 21:16:16,911 - INFO - mu = 1
+2026-05-08 21:16:16,911 - INFO - num_classes = 200
+2026-05-08 21:16:16,911 - INFO - num_workers = 8
+2026-05-08 21:16:16,911 - INFO - optim = AdamW
+2026-05-08 21:16:16,911 - INFO - oracle_split = [['u_train_in_oracle.txt'], ['../datasets/semi-aves']]
+2026-05-08 21:16:16,911 - INFO - pre_extracted = True
+2026-05-08 21:16:16,911 - INFO - prefix = None
+2026-05-08 21:16:16,912 - INFO - prompt_name = most_common_name
+2026-05-08 21:16:16,912 - INFO - recal_fea = True
+2026-05-08 21:16:16,912 - INFO - recal_prompt = True
+2026-05-08 21:16:16,912 - INFO - retrieval_data = [['T2T500+T2I0.25.txt'], ['retrieved/semi-aves']]
+2026-05-08 21:16:16,912 - INFO - retrieval_split = T2T500+T2I0.25.txt
+2026-05-08 21:16:16,912 - INFO - retrieved_path = retrieved/
+2026-05-08 21:16:16,912 - INFO - save_ckpt = False
+2026-05-08 21:16:16,912 - INFO - save_freq = 10
+2026-05-08 21:16:16,912 - INFO - scale_text_embedding = False
+2026-05-08 21:16:16,912 - INFO - seed = 1
+2026-05-08 21:16:16,912 - INFO - shots = 4
+2026-05-08 21:16:16,912 - INFO - skip_stage1 = False
+2026-05-08 21:16:16,912 - INFO - skip_stage2 = True
+2026-05-08 21:16:16,912 - INFO - stage1_model_path = None
+2026-05-08 21:16:16,912 - INFO - start_validation = 0
+2026-05-08 21:16:16,912 - INFO - stop_epochs = 200
+2026-05-08 21:16:16,912 - INFO - tau_norm = True
+2026-05-08 21:16:16,912 - INFO - temp_scheme = fewshot+retrieved+unlabeled
+2026-05-08 21:16:16,912 - INFO - temperature = 0.07
+2026-05-08 21:16:16,912 - INFO - test_split = [['test.txt'], ['../datasets/semi-aves']]
+2026-05-08 21:16:16,912 - INFO - threshold = 0.85
+2026-05-08 21:16:16,912 - INFO - topk_predictions = False
+2026-05-08 21:16:16,912 - INFO - train_split = [['fewshot4_seed1.txt'], ['../datasets/semi-aves']]
+2026-05-08 21:16:16,912 - INFO - training_seed = 1
+2026-05-08 21:16:16,912 - INFO - unlabeled_data_source = fewshot+unlabeled
+2026-05-08 21:16:16,912 - INFO - unlabeled_split = u_train_in_oracle.txt
+2026-05-08 21:16:16,912 - INFO - use_attribute = False
+2026-05-08 21:16:16,912 - INFO - use_ema = False
+2026-05-08 21:16:16,912 - INFO - utrain = None
+2026-05-08 21:16:16,912 - INFO - val_split = [['fewshot4_seed1.txt'], ['../datasets/semi-aves']]
+2026-05-08 21:16:16,912 - INFO - warmup_epochs = -1
+2026-05-08 21:16:16,912 - INFO - wd = 0.01
+2026-05-08 21:16:16,912 - INFO - zeroshot_only = False
+2026-05-08 21:16:16,913 - INFO - train_split: [['fewshot4_seed1.txt'], ['../datasets/semi-aves']]
+2026-05-08 21:16:16,914 - INFO - val_split: [['fewshot4_seed1.txt'], ['../datasets/semi-aves']]
+2026-05-08 21:16:16,914 - INFO - test_split: [['test.txt'], ['../datasets/semi-aves']]
+2026-05-08 21:16:16,914 - INFO - Device: cuda
+2026-05-08 21:16:16,925 - INFO - Number of GPUs available: 2
+2026-05-08 21:16:16,930 - INFO - Parsing model identifier. Schema: None, Identifier: ViT-B-32-quickgelu
+2026-05-08 21:16:16,930 - INFO - Loaded built-in ViT-B-32-quickgelu model config.
+2026-05-08 21:16:17,223 - INFO - HTTP Request: HEAD https://huggingface.co/timm/vit_base_patch32_clip_224.laion400m_e32/resolve/main/open_clip_model.safetensors "HTTP/1.1 302 Found"
+2026-05-08 21:16:17,223 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-05-08 21:16:17,256 - INFO - Instantiating model architecture: CLIP
+2026-05-08 21:16:18,188 - INFO - Loading full pretrained weights from: /home/odespo/.cache/huggingface/hub/models--timm--vit_base_patch32_clip_224.laion400m_e32/snapshots/faf88d716a164f74a5eaf785acf215a1bb7cfccd/open_clip_model.safetensors
+2026-05-08 21:16:18,250 - INFO - Final image preprocessing configuration set: {'size': (224, 224), 'mode': 'RGB', 'mean': (0.48145466, 0.4578275, 0.40821073), 'std': (0.26862954, 0.26130258, 0.27577711), 'interpolation': 'bicubic', 'resize_mode': 'shortest', 'fill_color': 0}
+2026-05-08 21:16:18,250 - INFO - Model ViT-B-32-quickgelu creation process complete.
+2026-05-08 21:16:18,250 - INFO - Parsing tokenizer identifier. Schema: None, Identifier: ViT-B-32-quickgelu
+2026-05-08 21:16:18,251 - INFO - Attempting to load config from built-in: ViT-B-32-quickgelu
+2026-05-08 21:16:18,251 - INFO - Using default SimpleTokenizer.
+2026-05-08 21:16:18,575 - INFO - Loaded model: vitb32_openclip_laion400m
+2026-05-08 21:16:18,599 - INFO - Loaded metrics from: data/semi-aves/semi-aves_labels.json
+2026-05-08 21:16:18,599 - INFO - len(metrics): 200
+2026-05-08 21:16:18,600 - INFO - Calculating prompt tensors for most_common_name ...
+2026-05-08 21:16:18,661 - INFO - Saved text prompts to data/semi-aves/prompts/semi-aves_vitb32_openclip_laion400m_most_common_name_text_prompts.pth
+2026-05-08 21:16:18,790 - INFO - Saved tokenized text prompts to data/semi-aves/prompts/semi-aves_vitb32_openclip_laion400m_most_common_name_tokenized_text_prompts.pth
+2026-05-08 21:16:19,985 - INFO - Saved prompt tensors to data/semi-aves/prompts/semi-aves_vitb32_openclip_laion400m_most_common_name_prompt_tensors.pth
+2026-05-08 21:16:19,992 - INFO - Initialized classifier head with text embedding. weights.shape: torch.Size([200, 512])
