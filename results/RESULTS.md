@@ -1,1 +1,1 @@
-`poc_diagnostic_pipeline_20260507_044307.log` shows a full run of our pipeline. See `src/outputs` for output files that are intermediate steps in the pipeline.
+`poc_diagnostic_pipeline_20260507_044307.log` shows a full run of our pipeline. See `src/outputs` for output files that are intermediate steps in the pipeline. There are some files like `stage1_model_best.pth` that could not be uploaded do to there size.
