@@ -310,7 +310,7 @@ python eval_output.py \
     --config-yaml ../config.yml
 
 # Evaluate Top-1 Accuracy Before and After Reranking
-cd ../experiments
+cd ../../experiments
 python top1_accuracy.py \
   --csv_file ../src/output/lmm_results/poc_with_diagnostic_semi-aves_4shot_seed1.csv \
   --topk_json ../src/output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
