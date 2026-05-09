@@ -308,6 +308,15 @@ python eval_output.py \
     --topk-json ../output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
     --image-dir semi-aves \
     --config-yaml ../config.yml
+
+# Evaluate Top-1 Accuracy Before and After Reranking
+cd ../experiments
+python top1_accuracy.py \
+  --csv_file ../src/output/lmm_results/poc_with_diagnostic_semi-aves_4shot_seed1.csv \
+  --topk_json ../src/output/predictions_topk_finetune/finetune_vitb32_openclip_laion400m_semi-aves_4_1_topk_test_predictions.json \
+  --test_txt ../src/data/semi-aves/test.txt \
+  --labels_json ../src/data/semi-aves/semi-aves_labels.json
+
 ```
 
 ## Seeing our training process
